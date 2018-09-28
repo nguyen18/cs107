@@ -24,9 +24,9 @@ public class TemperatureConverter {
 				
 				System.out.println("Please input the temperature in fahrenheit "
 						+ "\n(just the number and no degree or \"F/f\" symbol):");
-				double fah = (double)(userInput.nextDouble());
+				double fah = Double.parseDouble(userInput.nextLine());
 				
-				double cel = (double)((fah - 32) * (5/9));
+				double cel = (fah - 32) / 1.8;
 				
 				System.out.println("\ncelcius = " + cel);
 			}
@@ -35,9 +35,9 @@ public class TemperatureConverter {
 				
 				System.out.println("Please input the temperature in celcius "
 						+ "\n(just the number and no degree or \"C/c\" symbol):");
-				double cel = (double)(userInput.nextDouble());
+				double cel = Double.parseDouble(userInput.nextLine());
 				
-				double fah = (double)((cel * (5/9)) + 32);
+				double fah = (cel * (1.8)) + 32;
 				
 				System.out.println("\nfahrenheit = " + fah);
 			}
@@ -45,9 +45,12 @@ public class TemperatureConverter {
 			System.out.println("\nDo you have another temperature to convert? yes or no");
 			String cont = userInput.nextLine();
 			
-			if(cont.equals("yes")) {
-				continueLoop = true;
-			} else if(cont.equals("no")){
+			while(!cont.equals("yes") && !cont.equals("no")) {
+				System.out.println("sorry that is not an answer. please try again. (spelling counts!)");
+				cont = userInput.nextLine();
+			}
+			
+			if(cont.equals("no")){
 				continueLoop = false;
 			}
 			
